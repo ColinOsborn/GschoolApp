@@ -142,3 +142,45 @@ console.log(Math1.max([123-456-7777, 963-481-7945, 111-222-3333]));
 
 console.log("shorthand");
 console.log(Math.max.apply(Math, [123-456-7777, 963-481-7945, 111-222-3333]));
+
+/////// another go ////
+
+var points = ['123-456-7777', '963-481-7945', '111-222-3333']
+//console.log(array1.sort();
+console.log("Option A");
+var points = ['123-456-7777', '963-481-7945', '111-222-3333'];
+console.log(points.sort(function(a, b){return a-b}));
+
+// function dynamicSort(property) {
+//     var sortOrder = 1;
+//     if(property[0] === "-") {
+//         sortOrder = -1;
+//         property = property.substr(1);
+//     }
+//     return function (a,b) {
+//         var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+//         return result * sortOrder;
+//     }
+// }
+//
+// console.log(points.sort(dynamicSort));
+
+['123-456-7777', '963-481-7945', '111-222-3333'].sort(function (a,b) {
+   return a === null ? -1 : b === null ? 1 : a.toString().localeCompare(b);
+});
+// console.log("Option B");
+
+['123-456-7777', '963-481-7945', '111-222-3333'].sort(function (a,b) {
+    if (a === b) { return 0; }
+    if (a === null) {
+        return -1;
+    } else if (b === null) {
+        return 1;
+    } else if (typeof a === 'string') {
+        return a.localeCompare(b);
+    } else if (typeof a === 'number' || typeof a === 'boolean') {
+        if (a < b) return -1;
+        if (a > b) return 1;
+    }
+    return 0;
+});
